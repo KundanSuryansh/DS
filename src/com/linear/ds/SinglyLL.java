@@ -54,7 +54,30 @@ class SinglyLinkList<T> {
             System.out.print(curNode.getData() + ", ");
             curNode = curNode.getLink();
         }
-        System.out.print(curNode.getData() + " ]");
+        System.out.println(curNode.getData() + " ]" );
+    }
+
+    public void insertFromFront(T data) {
+        Node<T> newNode = new Node<>(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            newNode.setLink(head);
+            head = newNode;
+        }
+    }
+
+    public void insertFromBack(T data) {
+        Node<T> newNode = new Node<T>(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node<T> curNode = head;
+            while (curNode.getLink() != null) {
+                curNode = curNode.getLink();
+            }
+            curNode.setLink(newNode);
+        }
     }
 }
 
@@ -64,6 +87,10 @@ public class SinglyLL {
 
         SinglyLinkList<Integer> singlyLinkList = new SinglyLinkList<>();
         singlyLinkList.createSinglyLinkList(new Integer[]{1, 2, 4, 5, 3});
+        singlyLinkList.printSinglyLinkList();
+        singlyLinkList.insertFromFront(new Integer(10));
+        singlyLinkList.printSinglyLinkList();
+        singlyLinkList.insertFromBack(new Integer(23));
         singlyLinkList.printSinglyLinkList();
     }
 
