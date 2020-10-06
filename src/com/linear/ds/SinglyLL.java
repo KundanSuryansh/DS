@@ -182,21 +182,21 @@ class SinglyLinkList<T> {
         }
     }
 
-    public void printMiddleElementOfList(){
+    public void printMiddleElementOfList() {
         Node<T> slowPtr = head;
         Node<T> fastPtr = head;
         if (head == null) {
             System.out.println("No data is there.");
             return;
         }
-        if(head.getLink() != null){
+        if (head.getLink() != null) {
 
             while (fastPtr != null && fastPtr.getLink() != null) {
                 fastPtr = fastPtr.getLink().getLink();
                 slowPtr = slowPtr.getLink();
             }
         }
-        System.out.println("Middle Element : "+ slowPtr.getData());
+        System.out.println("Middle Element : " + slowPtr.getData());
 
     }
 
@@ -215,7 +215,7 @@ public class SinglyLL {
         singlyLinkList.searchAnObject(32);
         singlyLinkList.insertAtAnyPosition(new Integer(56), 8);
         singlyLinkList.printSinglyLinkList();
-       singlyLinkList.deleteAtAnyPosition(8);
+        singlyLinkList.deleteAtAnyPosition(8);
         singlyLinkList.printSinglyLinkList();
         singlyLinkList.printMiddleElementOfList();
     }
