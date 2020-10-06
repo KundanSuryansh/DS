@@ -79,6 +79,26 @@ class SinglyLinkList<T> {
             curNode.setLink(newNode);
         }
     }
+
+    public void searchAnObject(T data){
+        if(head == null){
+            System.out.println("No object are inserted into Link List");
+            return;
+        }
+        int pos = 1;
+        Node<T> curNode = head;
+        while (curNode.getLink() != null) {
+            if(curNode.getData().equals(data)){
+                break;
+            }
+            curNode = curNode.getLink();
+            pos++;
+        }
+        if(curNode.getData().equals(data)){
+            System.out.println("Element found at position : "+pos);
+        }
+
+    }
 }
 
 
@@ -92,6 +112,7 @@ public class SinglyLL {
         singlyLinkList.printSinglyLinkList();
         singlyLinkList.insertFromBack(new Integer(23));
         singlyLinkList.printSinglyLinkList();
+        singlyLinkList.searchAnObject(23);
     }
 
 }
