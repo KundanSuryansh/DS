@@ -112,7 +112,7 @@ class SinglyLinkList<T> {
      * @param pos  : It should start from 1. if pos value is greater than length of link list, it will store data at last.
      */
     public void insertAtAnyPosition(T data, int pos) {
-        if(pos < 1) {
+        if (pos < 1) {
             System.out.println("Position value is not proper.");
             return;
         }
@@ -140,10 +140,46 @@ class SinglyLinkList<T> {
                 curNode = curNode.getLink();
                 count++;
             }
-            if(!isElementInserted)
+            if (!isElementInserted)
                 prevNode.setLink(newNode);
         }
 
+    }
+
+    /**
+     * @param pos : It should start from 1. if pos value is greater than length of link list, it will delete data at last.
+     */
+    public void deleteAtAnyPosition(int pos) {
+
+        boolean isElementDeleted = false;
+
+        if (pos < 1) {
+            System.out.println("Position value is not proper.");
+            return;
+        }
+        if (head == null) {
+            System.out.println("No data there for deletion.");
+            return;
+        }
+        if (pos == 1) {
+            head = head.getLink();
+        } else {
+            int count = 1;
+            Node<T> curNode = head;
+            Node<T> prevNode = head;
+            while (curNode != null) {
+                if (count == pos) {
+                    prevNode.setLink(curNode.getLink());
+                    isElementDeleted = true;
+                    break;
+                }
+                prevNode = curNode;
+                curNode = curNode.getLink();
+                count++;
+            }
+            if (isElementDeleted)
+                System.out.println("specified position data removed.");
+        }
     }
 }
 
@@ -158,7 +194,9 @@ public class SinglyLL {
         singlyLinkList.insertFromBack(new Integer(23));
         singlyLinkList.printSinglyLinkList();
         singlyLinkList.searchAnObject(32);
-        singlyLinkList.insertAtAnyPosition(new Integer(56),8);
+        singlyLinkList.insertAtAnyPosition(new Integer(56), 8);
+        singlyLinkList.printSinglyLinkList();
+        singlyLinkList.deleteAtAnyPosition(8);
         singlyLinkList.printSinglyLinkList();
     }
 
