@@ -200,6 +200,56 @@ class SinglyLinkList<T> {
 
     }
 
+    public void deleteMiddleElementOfList() {
+        Node<T> slowPtr = head;
+        Node<T> behindSlowPtr = head;
+        Node<T> fastPtr = head;
+
+        if (head == null) {
+            System.out.println("No data is there.");
+            return;
+        }
+        if (head.getLink() != null) {
+
+            while (fastPtr != null && fastPtr.getLink() != null) {
+                fastPtr = fastPtr.getLink().getLink();
+                behindSlowPtr = slowPtr;
+                slowPtr = slowPtr.getLink();
+            }
+            behindSlowPtr.setLink(slowPtr.getLink());
+        } else {
+            head = null;
+        }
+
+    }
+
+    public void removeDuplicateFromSortedLinkList() {
+
+        if (head == null || head.getLink() == null) {
+            System.out.println("No duplicate data is there.");
+            return;
+        }
+        Node<T> curNode = head;
+        Node<T> prevNode;
+        boolean isDuplicateElement = false;
+        while (curNode.getLink() != null) {
+            prevNode = curNode;
+            isDuplicateElement = false;
+            while (curNode.getLink()!=null && curNode.getData().equals(curNode.getLink().getData())) {
+                curNode = curNode.getLink();
+                isDuplicateElement = true;
+            }
+            if(isDuplicateElement) {
+                prevNode.setLink(curNode.getLink());
+            } else {
+                curNode = curNode.getLink();
+            }
+
+        }
+
+    }
+
+
 }
 
 
@@ -218,6 +268,15 @@ public class SinglyLL {
         singlyLinkList.deleteAtAnyPosition(8);
         singlyLinkList.printSinglyLinkList();
         singlyLinkList.printMiddleElementOfList();
+        singlyLinkList.deleteMiddleElementOfList();
+        singlyLinkList.printSinglyLinkList();
+        singlyLinkList.deleteMiddleElementOfList();
+        singlyLinkList.printSinglyLinkList();
+
+        SinglyLinkList<Integer> sortedSinglyLinkList = new SinglyLinkList<>();
+        sortedSinglyLinkList.createSinglyLinkList(new Integer[]{1, 2, 3, 4, 4, 5, 5, 6});
+        sortedSinglyLinkList.removeDuplicateFromSortedLinkList();
+        sortedSinglyLinkList.printSinglyLinkList();
     }
 
 }
